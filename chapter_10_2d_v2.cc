@@ -56,21 +56,17 @@
 #include <map>
 #include <sys/stat.h>
 
-
-#include "/home/zerpiko/git/libraries/SurfaceCoefficients.h"
-#include "/home/zerpiko/git/libraries/AnalyticSolution.h"
-#include "/home/zerpiko/git/libraries/BoundaryConditions.h"
-#include "/home/zerpiko/git/libraries/data_tools.h"
-#include "/home/zerpiko/git/libraries/MaterialData.h"
-
-
-
+#include "libraries/SurfaceCoefficients.h"
+#include "libraries/AnalyticSolution.h"
+#include "libraries/BoundaryConditions.h"
+#include "libraries/DataTools.h"
+#include "libraries/MaterialData.h"
 
 namespace TRL
 {
   using namespace dealii;
-#include "/home/zerpiko/git/libraries/PipeConvectiveCoefficient.h"
-#include "/home/zerpiko/git/libraries/PipeSystem.h"
+#include "libraries/PipeConvectiveCoefficient.h"
+#include "libraries/PipeSystem.h"
   
   template <int dim>
   class Heat_Pipe
@@ -1475,8 +1471,7 @@ namespace TRL
   {
     const Vector<double> localized_solution_temperature(old_solution_temperature);
 
-    Names names/*(preheating_step,
-		 met_data_type);*/;
+    Names names("input_path");
     std::vector<double>borehole_depths;
     names.get_depths(borehole_depths,
 		     "road");

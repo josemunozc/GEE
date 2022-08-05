@@ -5,18 +5,18 @@ FIND_PACKAGE(deal.II 8.0 REQUIRED
   )
 DEAL_II_INITIALIZE_CACHED_VARIABLES()
 
-PROJECT(myproject)
+PROJECT(mycode)
 
-
-
-ADD_LIBRARY(mylib /home/zerpiko/libraries/SurfaceCoefficients.cpp /home/zerpiko/libraries/AnalyticSolution.cpp /home/zerpiko/libraries/MaterialData.cpp /home/zerpiko/libraries/BoundaryConditions.cpp)
+ADD_LIBRARY(mylib $ENV{HOME}/git/libraries/SurfaceCoefficients.cpp $ENV{HOME}/git/libraries/AnalyticSolution.cpp $ENV{HOME}/git/libraries/MaterialData.cpp $ENV{HOME}/git/libraries/BoundaryConditions.cpp)
 DEAL_II_SETUP_TARGET(mylib)
 
 
-ADD_EXECUTABLE(mycode chapter_10_2d_v2.cc)
-DEAL_II_SETUP_TARGET(mycode)
+ADD_EXECUTABLE(${PROJECT_NAME} chapter_10_2d_v2.cc)
+DEAL_II_SETUP_TARGET(${PROJECT_NAME})
 
-TARGET_LINK_LIBRARIES(mycode mylib)
+TARGET_INCLUDE_DIRECTORIES(${PROJECT_NAME} PUBLIC $ENV{HOME}/git)
+
+TARGET_LINK_LIBRARIES(${PROJECT_NAME} mylib)
 
 
 ADD_CUSTOM_TARGET(debug
